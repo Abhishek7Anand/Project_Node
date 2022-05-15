@@ -4,7 +4,7 @@ const router=express.Router()
 const {Employee}=require('../models/employee');
 
 // get All Employee
-router.get('/api/employees',(req,res)=>{
+router.get('/api/employee',(req,res)=>{
     Employee.find({},(err,data)=>{
         if(!err){
             res.send(data)
@@ -15,7 +15,7 @@ router.get('/api/employees',(req,res)=>{
 })
 
 // save an employee
-router.post('/api/employees/add',(req,res)=>{
+router.post('/api/employee/add',(req,res)=>{
     const emp = new Employee({
         name:req.body.name,
         email:req.body.email,
@@ -27,7 +27,7 @@ router.post('/api/employees/add',(req,res)=>{
 })
 
 // get singlr employee
-router.get('/api/employees/:id',(req,res)=>{
+router.get('/api/employee/:id',(req,res)=>{
     Employee.findById(req.params.id,(err,data)=>{
 if(!err){
     res.send(data);
@@ -38,7 +38,7 @@ if(!err){
 })
 
 // update the employee
-router.put('/api/employees/edit/:id',(req,res)=>{
+router.put('/api/employee/edit/:id',(req,res)=>{
     const emp={
         name:req.body.name,
         email:req.body.email,
@@ -53,7 +53,7 @@ router.put('/api/employees/edit/:id',(req,res)=>{
     })
 })
 // Delete an Employee
-router.delete('/api/employees/delete/:id',(req,res)=>{
+router.delete('/api/employee/delete/:id',(req,res)=>{
     Employee.findByIdAndRemove(req.params.id,(err,data)=>{
         if(!err){
             res.status(200).json({code:200,message:'Employee Deleted Successfully',deleteEmployee:data})
